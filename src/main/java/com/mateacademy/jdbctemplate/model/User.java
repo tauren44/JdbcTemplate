@@ -3,6 +3,7 @@ package com.mateacademy.jdbctemplate.model;
 import com.mateacademy.jdbctemplate.annotations.InjectRandomInit;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(exclude = {"id"})
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
