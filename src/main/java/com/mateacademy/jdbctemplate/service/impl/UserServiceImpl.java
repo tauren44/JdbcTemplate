@@ -1,8 +1,8 @@
 package com.mateacademy.jdbctemplate.service.impl;
 
-import com.mateacademy.jdbctemplate.dao.UserDao;
-import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
+import com.mateacademy.jdbctemplate.repository.UserRepository;
+import com.mateacademy.jdbctemplate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,40 +12,41 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+    private UserRepository repository;
 
     @Autowired
-    private void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
+    private void setRepository(UserRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public Long createUser(User user) {
-        return userDao.createUser(user);
+        repository.save(user);
+        return user.getId();
     }
 
     @Override
     public Optional<User> findUserById(Long id) {
-        return userDao.findUserById(id);
+        return Optional.ofNullable(repository.getOne(id));
     }
 
     @Override
     public void updateUser(User user) {
-        userDao.updateUser(user);
+        repository.save(user);
     }
 
     @Override
     public void deleteUserByReference(User user) {
-        userDao.deleteUserByReference(user);
+        repository.delete(user);
     }
 
     @Override
     public void deleteUserById(Long id) {
-        userDao.deleteUserById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return repository.findAll();
     }
 }
