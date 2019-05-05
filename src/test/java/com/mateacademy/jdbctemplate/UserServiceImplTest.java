@@ -1,7 +1,7 @@
-package com.mateacademy.jdbctemplate.controller.service.impl;
+package com.mateacademy.jdbctemplate;
 
 import com.mateacademy.jdbctemplate.config.ApplicationConfig;
-import com.mateacademy.jdbctemplate.controller.service.UserService;
+import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,7 +29,7 @@ public class UserServiceImplTest {
 
     @After
     public void tearDrop(){
-        service.deleteUser(user);
+        service.deleteUserByReference(user);
     }
 
     @Test
@@ -58,14 +58,14 @@ public class UserServiceImplTest {
     @Test
     public void shouldDeleteUserByReference() {
         service.createUser(user);
-        service.deleteUser(user);
+        service.deleteUserByReference(user);
         Assert.assertFalse(service.getAllUsers().contains(user));
     }
 
     @Test
     public void shouldDeleteUserById() {
         Long targetId = service.createUser(user);
-        service.deleteUser(targetId);
+        service.deleteUserById(targetId);
         Assert.assertFalse(service.getAllUsers().contains(user));
     }
 
@@ -73,7 +73,7 @@ public class UserServiceImplTest {
     public void shouldReturnListOfUsers() {
         service.createUser(user);
         Assert.assertEquals(service.getAllUsers().size(), 1);
-        service.deleteUser(user);
+        service.deleteUserByReference(user);
         Assert.assertEquals(service.getAllUsers().size(), 0);
     }
 }

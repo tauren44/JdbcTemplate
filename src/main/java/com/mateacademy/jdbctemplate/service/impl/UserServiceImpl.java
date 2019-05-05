@@ -1,7 +1,7 @@
-package com.mateacademy.jdbctemplate.controller.service.impl;
+package com.mateacademy.jdbctemplate.service.impl;
 
-import com.mateacademy.jdbctemplate.controller.dao.UserDao;
-import com.mateacademy.jdbctemplate.controller.service.UserService;
+import com.mateacademy.jdbctemplate.dao.UserDao;
+import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public Long createUser(User user) {
@@ -31,13 +35,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(User user) {
-        userDao.deleteUser(user);
+    public void deleteUserByReference(User user) {
+        userDao.deleteUserByReference(user);
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userDao.deleteUser(id);
+    public void deleteUserById(Long id) {
+        userDao.deleteUserById(id);
     }
 
     @Override

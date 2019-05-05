@@ -1,4 +1,4 @@
-package com.mateacademy.jdbctemplate.controller.dao;
+package com.mateacademy.jdbctemplate.dao;
 
 import com.mateacademy.jdbctemplate.model.User;
 
@@ -9,7 +9,7 @@ public interface UserDao {
     Long createUser(User user);
     Optional<User> findUserById(Long id);
     void updateUser(User user);
-    void deleteUser(User user);
-    void deleteUser(Long id);
+    void deleteUserByReference(User user);
+    void deleteUserById(Long id);
     List<User> getAllUsers();
 }

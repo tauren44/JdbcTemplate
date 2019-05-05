@@ -1,7 +1,7 @@
 package com.mateacademy.jdbctemplate;
 
 import com.mateacademy.jdbctemplate.config.ApplicationConfig;
-import com.mateacademy.jdbctemplate.controller.service.UserService;
+import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

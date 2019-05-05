@@ -1,4 +1,4 @@
-package com.mateacademy.jdbctemplate.controller.service;
+package com.mateacademy.jdbctemplate.service;
 
 import com.mateacademy.jdbctemplate.model.User;
 
@@ -9,7 +9,7 @@ public interface UserService {
     Long createUser(User user);
     Optional<User> findUserById(Long id);
     void updateUser(User user);
-    void deleteUser(User user);
-    void deleteUser(Long id);
+    void deleteUserByReference(User user);
+    void deleteUserById(Long id);
     List<User> getAllUsers();
 }

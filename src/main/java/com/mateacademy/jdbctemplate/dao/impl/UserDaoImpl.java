@@ -1,6 +1,6 @@
-package com.mateacademy.jdbctemplate.controller.dao.impl;
+package com.mateacademy.jdbctemplate.dao.impl;
 
-import com.mateacademy.jdbctemplate.controller.dao.UserDao;
+import com.mateacademy.jdbctemplate.dao.UserDao;
 import com.mateacademy.jdbctemplate.model.User;
 import com.mateacademy.jdbctemplate.model.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * @author taureN
+ * Implementation for UserDao
+ */
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -76,15 +80,15 @@ public class UserDaoImpl implements UserDao {
      * @param user target entity to delete from database
      */
     @Override
-    public void deleteUser(User user) {
-        deleteUser(user.getId());
+    public void deleteUserByReference(User user) {
+        deleteUserById(user.getId());
     }
 
     /**
      * @param id target primary key to delete from database
      */
     @Override
-    public void deleteUser(Long id) {
+    public void deleteUserById(Long id) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
         jdbcTemplate.update(DELETE_SQL, params);

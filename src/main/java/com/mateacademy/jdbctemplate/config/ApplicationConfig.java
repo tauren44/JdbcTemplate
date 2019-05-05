@@ -15,21 +15,21 @@ import javax.sql.DataSource;
 public class ApplicationConfig {
 
     @Value("${url}")
-    private String URL;
+    private String url;
     @Value("${user}")
-    private String USER;
+    private String user;
     @Value("${driver}")
-    private String DRIVER;
+    private String driver;
     @Value("${password}")
-    private String PASSWORD;
+    private String password;
 
     @Bean
     DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl(URL);
-        driverManagerDataSource.setUsername(USER);
-        driverManagerDataSource.setPassword(PASSWORD);
-        driverManagerDataSource.setDriverClassName(DRIVER);
+        driverManagerDataSource.setUrl(url);
+        driverManagerDataSource.setUsername(user);
+        driverManagerDataSource.setPassword(password);
+        driverManagerDataSource.setDriverClassName(driver);
         return driverManagerDataSource;
     }
 }
