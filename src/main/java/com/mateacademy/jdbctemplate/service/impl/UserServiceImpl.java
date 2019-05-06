@@ -3,6 +3,7 @@ package com.mateacademy.jdbctemplate.service.impl;
 import com.mateacademy.jdbctemplate.dao.UserDao;
 import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
-
-    @Autowired
-    private void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public Long createUser(User user) {
