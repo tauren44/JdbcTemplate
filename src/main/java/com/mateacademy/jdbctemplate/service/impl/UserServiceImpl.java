@@ -1,14 +1,13 @@
 package com.mateacademy.jdbctemplate.service.impl;
 
 import com.mateacademy.jdbctemplate.dao.UserDao;
-import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
+import com.mateacademy.jdbctemplate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -23,7 +22,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Long id) {
-        return userDao.findUserById(id).get();
+        if (userDao.findUserById(id).isPresent()) {
+            return userDao.findUserById(id).get();
+        }
+        else {
+            throw new IllegalArgumentException("Invalid id");
+        }
     }
 
     @Override
