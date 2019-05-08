@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * @param dataSource autowired from ApplicationConfig.class
      */
-    @Autowired()
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }

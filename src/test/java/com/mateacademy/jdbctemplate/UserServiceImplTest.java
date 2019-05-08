@@ -1,10 +1,9 @@
 package com.mateacademy.jdbctemplate;
 
 import com.mateacademy.jdbctemplate.config.ApplicationConfig;
-import com.mateacademy.jdbctemplate.service.UserService;
 import com.mateacademy.jdbctemplate.model.User;
+import com.mateacademy.jdbctemplate.service.UserService;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
@@ -36,14 +38,14 @@ public class UserServiceImplTest {
     public void shouldCreateUserInDatabase() {
         service.createUser(user);
         Optional<User> expectedUser = service.findUserById(user.getId());
-        Assert.assertEquals(user, expectedUser.get());
+        assertEquals(user, expectedUser.get());
     }
 
     @Test
     public void shouldFindUserById() {
         Long targetId = service.createUser(user);
         Optional<User> expectedUser = service.findUserById(targetId);
-        Assert.assertEquals(user, expectedUser.get());
+        assertEquals(user, expectedUser.get());
     }
 
     @Test
@@ -52,28 +54,28 @@ public class UserServiceImplTest {
         user.setName("Updated");
         user.setAge(100);
         service.updateUser(user);
-        Assert.assertEquals(user, service.findUserById(targetId).get());
+        assertEquals(user, service.findUserById(targetId).get());
     }
 
     @Test
     public void shouldDeleteUserByReference() {
         service.createUser(user);
         service.deleteUserByReference(user);
-        Assert.assertFalse(service.getAllUsers().contains(user));
+        assertFalse(service.getAllUsers().contains(user));
     }
 
     @Test
     public void shouldDeleteUserById() {
         Long targetId = service.createUser(user);
         service.deleteUserById(targetId);
-        Assert.assertFalse(service.getAllUsers().contains(user));
+        assertFalse(service.getAllUsers().contains(user));
     }
 
     @Test
     public void shouldReturnListOfUsers() {
         service.createUser(user);
-        Assert.assertEquals(service.getAllUsers().size(), 1);
+        assertEquals(service.getAllUsers().size(), 1);
         service.deleteUserByReference(user);
-        Assert.assertEquals(service.getAllUsers().size(), 0);
+        assertEquals(service.getAllUsers().size(), 0);
     }
 }
